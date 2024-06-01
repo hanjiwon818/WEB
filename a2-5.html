@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>민지는 필요한 생활용품을 구매하려 합니다.</h3>
+    <h3>각 매장의 가격을 비교하여 문제를 풀어세요(1~3).</h3>
+    <table border="1">
+        <tr>
+            <th>물건</th>
+            <th>하나마트</th>
+            <th>소망마트</th>
+            <th>싱싱마트</th>
+        </tr>
+        <tr>
+            <td>두루마리 휴지</td>
+            <td>10,000원</td>
+            <td>15,000원</td>
+            <td>13,000원</td>
+        </tr>
+        <tr>
+            <td>물티슈</td>
+            <td>20,000원</td>
+            <td>21,000원</td>
+            <td>23,000원</td>
+        </tr>
+        <tr>
+            <td>샴푸</td>
+            <td>7,000원</td>
+            <td>8,000원</td>
+            <td>6,000원</td>
+        </tr>
+        <tr>
+            <td>린스</td>
+            <td>8,000원</td>
+            <td>7,000원</td>
+            <td>5,000원</td>
+        </tr>
+        <tr>
+            <td>바디로션</td>
+            <td>10,000원</td>
+            <td>7,000원</td>
+            <td>5,000원</td>
+        </tr>
+    </table>
+    <ol>
+        <li>민지는 두루마리 휴지 2팩과 샴푸, 린스를 각각 1통씩 구매하려고 합니다.
+            <br>가격이 가장 저렴한 마트는 어디인가요?
+            <div>입력한 답: <span class="answer1"></span></div>
+            <div>정답: <span class="correct1"></span></div>
+            <input type="text" id="input1">
+            <button class="btn1">입력</button><br><br><br><br>
+        </li>
+
+        <li>민지는 하나마트에 적립금이 5,000원이 있습니다.
+            <br>물건을 종류별로 모두 구입하고 적립금을 사용했을 때 지불해야 할 가격은 총 얼마인가요?
+            <div>입력한 답: <span class="answer2"></span></div>
+            <div>정답: <span class="correct2"></span></div>
+            <input type="text" id="input2">
+            <button class="btn2">입력</button><br><br><br><br>
+        </li>
+
+        <li>물건들의 가격을 비교하면 어떤 마트를 이용해야 가장 저렴하게 구입할 수 있나요?
+            <div>입력한 답: <span class="answer3"></span></div>
+            <div>정답: <span class="correct3"></span></div>
+            <input type="text" id="input3">
+            <button class="btn3">입력</button><br><br><br><br>
+        </li>
+    </ol>
+    <button id="check">정답 확인하기</button>
+    <div>맞힌 문제 수: <span class="cnt"></span></div>
+
+    <script>
+        const correct = { //정답
+            'correctAnswer1': '하나마트',
+            'correctAnswer2': '50,000원',
+            'correctAnswer3': '싱싱마트',
+        };
+
+        const $input1 = document.querySelector('#input1');  //사용자 입력
+        const $input2 = document.querySelector('#input2');  //사용자 입력
+        const $input3 = document.querySelector('#input3');  //사용자 입력
+        const $answer1 = document.querySelector('.answer1');    //사용자 입력 답 
+        const $answer2 = document.querySelector('.answer2');    //사용자 입력 답 
+        const $answer3 = document.querySelector('.answer3');    //사용자 입력 답 
+        const $correct1 = document.querySelector('.correct1');  //정답
+        const $correct2 = document.querySelector('.correct2');  //정답
+        const $correct3 = document.querySelector('.correct3');  //정답
+        const $cnt = document.querySelector('.cnt'); //맞힌 문제 수
+        const userAnswers = [];
+        let cnt = 0;
+        let inputs = [$input1, $input2, $input3];
+        let answers = [$answer1, $answer2, $answer3]
+        let corrects = [$correct1, $correct2, $correct3]
+
+        for (let i = 0; i < Object.keys(correct).length; i++) {
+            document.querySelector(`.btn${i + 1}`).addEventListener('click', () => {
+                userAnswers.push(inputs[i].value);
+                answers[i].textContent = userAnswers[i];
+                inputs[i].value = '';
+            });
+        }
+
+        document.querySelector('#check').addEventListener('click', () => {
+            for (let i = 0; i < userAnswers.length; i++) {
+                corrects[i].textContent = correct['correctAnswer' + (i + 1)];
+                if (userAnswers[i] === correct['correctAnswer' + (i + 1)]) {
+                    cnt += 1;
+                }
+            }
+            $cnt.textContent = cnt;
+        });
+    </script>
+</body>
+
+</html>
