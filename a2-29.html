@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>오늘 동진 씨가 사용하고 작성한 가계부입니다.</h3>
+    <h3>가계부를 보고 문제를 풀어보세요(1~3).</h3>
+    <table border="1" style="text-align: center;">
+        <tr>
+            <th>목록</th>
+            <th>수입</th>
+            <th>지출</th>
+            <th>잔액</th>
+        </tr>
+        <tr>
+            <td>용돈</td>
+            <td class="import1"></td> <!--용돈-->
+            <td class="expense1">0</td>
+            <td class="balance1"></td>
+        </tr>
+        <tr>
+            <td>세탁소</td>
+            <td>0</td>
+            <td class="expense2"></td>
+            <td class="잔액">?</td>
+        </tr>
+        </tr>
+        <tr>
+            <td>중화 요리</td>
+            <td>0</td>
+            <td class="expense3"></td>
+            <td>?</td>
+        </tr>
+        <tr>
+            <td>애견 간식</td>
+            <td>0</td>
+            <td class="expense4"></td>
+            <td>?</td>
+        </tr>
+    </table>
+    <ol>
+        <li>동진 씨가 부족한 돈은 얼마인가요?
+            <input type="text" id="input1"><button class="btn1">입력</button>
+            <div>입력한 답: <span class="userAnswers1"></span></div>
+            <div>정답: <span id="answer1"></span></div><br><br>
+        </li>
+
+        <li>애견 간식은 평소 모아둔 적립금으로 결제했고, 중화 요리에서 이벤트로 5천원 할인을 받았습니다.<br> 실제로 사용한 돈은 얼마인가요?
+            <input type="text" id="input2"><button class="btn2">입력</button>
+            <div>입력한 답: <span class="userAnswers2"></span></div>
+            <div>정답: <span id="answer2"></span></div><br><br>
+        </li>
+
+        <li>아내가 동진 씨에게 7만원을 더 주었습니다.<br> 현재 동진 씨의 잔액은 총 얼마인가요?
+            <input type="text" id="input3"><button class="btn3">입력</button>
+            <div>입력한 답: <span class="userAnswers3"></span></div>
+            <div>정답: <span id="answer3"></span></div><br><br>
+        </li>
+
+    </ol>
+    <button class="btn4">결과 확인</button><button class="btn5">문제 새로고침</button>
+    <div>맞힌 개수: <span id="cnt"></span></div>
+    <script>
+        const $import1 = document.querySelector('.import1');
+        const $expense1 = document.querySelector('.expense1');
+        const $balance1 = document.querySelector('.balance1');
+        const $expense2 = document.querySelector('.expense2');
+        const $expense3 = document.querySelector('.expense3');
+        const $expense4 = document.querySelector('.expense4');
+        const $answer1 = document.querySelector('#answer1');
+        const $answer2 = document.querySelector('#answer2');
+        const $answer3 = document.querySelector('#answer3');
+        const $userAnswers1 = document.querySelector('.userAnswers1');
+        const $userAnswers2 = document.querySelector('.userAnswers2');
+        const $userAnswers3 = document.querySelector('.userAnswers3');
+        const $input1 = document.querySelector('#input1');
+        const $input2 = document.querySelector('#input2');
+        const $input3 = document.querySelector('#input3');
+        const $btn1 = document.querySelector('.btn1');
+        const $btn2 = document.querySelector('.btn2');
+        const $btn3 = document.querySelector('.btn3');
+        const $btn4 = document.querySelector('.btn4');
+        const $btn5 = document.querySelector('.btn5');
+        const $cnt = document.querySelector('#cnt');
+        let cnt = 0;
+        userA = [];
+        A = [];
+
+        //용돈 3만원 이상 5만 5천원 미만
+        let import1 = Math.floor(Math.random() * 25 + 30) * 1000;
+        $import1.textContent = import1.toLocaleString();
+        let expense1 = parseInt($expense1.textContent);
+        let balance1 = import1 - expense1;
+        $balance1.textContent = balance1.toLocaleString();
+
+        //세탁소 5천원 이상 2만원 미만
+        let expense2 = Math.floor(Math.random() * 15 + 5) * 1000;
+        $expense2.textContent = expense2.toLocaleString();
+
+        //중화요리 3만5천원 이상 5만5천원 미만
+        let expense3 = Math.floor(Math.random() * 20 + 35) * 1000;
+        $expense3.textContent = expense3.toLocaleString();
+
+        //애견간식 4천원 이상 1만6천원 미만
+        let expense4 = Math.floor(Math.random() * 12 + 4) * 1000;
+        $expense4.textContent = expense4.toLocaleString();
+
+        //사용자 입력
+        //1번 
+        $btn1.addEventListener('click', () => {
+            let userAnswers1 = $input1.value;
+            userA.push(parseInt(userAnswers1)); // html 가져온 수는 문자열이기 때문에 정수로 바꿔서 비교
+            $userAnswers1.textContent = userAnswers1;
+            $input1.value = '';
+        });
+        //2번
+        $btn2.addEventListener('click', () => {
+            let userAnswers2 = $input2.value;
+            userA.push(parseInt(userAnswers2));
+            $userAnswers2.textContent = userAnswers2;
+            $input2.value = '';
+        });
+        //3번
+        $btn3.addEventListener('click', () => {
+            let userAnswers3 = $input3.value;
+            userA.push(parseInt(userAnswers3));
+            $userAnswers3.textContent = userAnswers3;
+            $input3.value = '';
+        });
+
+        //결과확인
+        $btn4.addEventListener('click', () => {
+            cnt = 0;
+            //1번 정답
+            let answer1 = (expense1 + expense2 + expense3 + expense4) - import1;
+            A.push(answer1);
+            $answer1.textContent = answer1;
+
+            //2번 정답
+            let answer2 = expense3 - 5000 + expense2;
+            A.push(answer2);
+            $answer2.textContent = answer2;
+
+            //3번 정답
+            let answer3 = (import1 + 70000) - (expense2 + expense3 + expense4);
+            A.push(answer3);
+            $answer3.textContent = answer3;
+
+            //맞힌 개수
+            for (let i = 0; i < A.length; i++) {
+                if (A[i] === userA[i]) {
+                    cnt += 1;
+                }
+                $cnt.textContent = cnt;
+            }
+        });
+
+        $btn5.addEventListener('click',()=>{
+            location.reload();
+        });
+        
+    </script>
+</body>
+
+</html>
