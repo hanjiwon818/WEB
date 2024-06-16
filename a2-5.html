@@ -76,22 +76,22 @@
     <div>맞힌 문제 수: <span class="cnt"></span></div>
 
     <script>
-        const correct = { //정답
+        const correct = {
             'correctAnswer1': '하나마트',
             'correctAnswer2': '50,000원',
             'correctAnswer3': '싱싱마트',
         };
 
-        const $input1 = document.querySelector('#input1');  //사용자 입력
-        const $input2 = document.querySelector('#input2');  //사용자 입력
-        const $input3 = document.querySelector('#input3');  //사용자 입력
-        const $answer1 = document.querySelector('.answer1');    //사용자 입력 답 
-        const $answer2 = document.querySelector('.answer2');    //사용자 입력 답 
-        const $answer3 = document.querySelector('.answer3');    //사용자 입력 답 
-        const $correct1 = document.querySelector('.correct1');  //정답
-        const $correct2 = document.querySelector('.correct2');  //정답
-        const $correct3 = document.querySelector('.correct3');  //정답
-        const $cnt = document.querySelector('.cnt'); //맞힌 문제 수
+        const $input1 = document.querySelector('#input1');  
+        const $input2 = document.querySelector('#input2');  
+        const $input3 = document.querySelector('#input3'); 
+        const $answer1 = document.querySelector('.answer1');   
+        const $answer2 = document.querySelector('.answer2');   
+        const $answer3 = document.querySelector('.answer3');  
+        const $correct1 = document.querySelector('.correct1');  
+        const $correct2 = document.querySelector('.correct2');  
+        const $correct3 = document.querySelector('.correct3');  
+        const $cnt = document.querySelector('.cnt'); 
         const userAnswers = [];
         let cnt = 0;
         let inputs = [$input1, $input2, $input3];
