@@ -91,41 +91,40 @@
         userA = [];
         A = [];
 
-        //용돈 3만원 이상 5만 5천원 미만
+       
         let import1 = Math.floor(Math.random() * 25 + 30) * 1000;
         $import1.textContent = import1.toLocaleString();
         let expense1 = parseInt($expense1.textContent);
         let balance1 = import1 - expense1;
         $balance1.textContent = balance1.toLocaleString();
 
-        //세탁소 5천원 이상 2만원 미만
+        
         let expense2 = Math.floor(Math.random() * 15 + 5) * 1000;
         $expense2.textContent = expense2.toLocaleString();
 
-        //중화요리 3만5천원 이상 5만5천원 미만
+        
         let expense3 = Math.floor(Math.random() * 20 + 35) * 1000;
         $expense3.textContent = expense3.toLocaleString();
 
-        //애견간식 4천원 이상 1만6천원 미만
+        
         let expense4 = Math.floor(Math.random() * 12 + 4) * 1000;
         $expense4.textContent = expense4.toLocaleString();
 
-        //사용자 입력
-        //1번 
+       
         $btn1.addEventListener('click', () => {
             let userAnswers1 = $input1.value;
-            userA.push(parseInt(userAnswers1)); // html 가져온 수는 문자열이기 때문에 정수로 바꿔서 비교
+            userA.push(parseInt(userAnswers1)); 
             $userAnswers1.textContent = userAnswers1;
             $input1.value = '';
         });
-        //2번
+        
         $btn2.addEventListener('click', () => {
             let userAnswers2 = $input2.value;
             userA.push(parseInt(userAnswers2));
             $userAnswers2.textContent = userAnswers2;
             $input2.value = '';
         });
-        //3번
+       
         $btn3.addEventListener('click', () => {
             let userAnswers3 = $input3.value;
             userA.push(parseInt(userAnswers3));
@@ -133,25 +132,25 @@
             $input3.value = '';
         });
 
-        //결과확인
+   
         $btn4.addEventListener('click', () => {
             cnt = 0;
-            //1번 정답
+           
             let answer1 = (expense1 + expense2 + expense3 + expense4) - import1;
             A.push(answer1);
             $answer1.textContent = answer1;
 
-            //2번 정답
+         
             let answer2 = expense3 - 5000 + expense2;
             A.push(answer2);
             $answer2.textContent = answer2;
 
-            //3번 정답
+           
             let answer3 = (import1 + 70000) - (expense2 + expense3 + expense4);
             A.push(answer3);
             $answer3.textContent = answer3;
 
-            //맞힌 개수
+          
             for (let i = 0; i < A.length; i++) {
                 if (A[i] === userA[i]) {
                     cnt += 1;
